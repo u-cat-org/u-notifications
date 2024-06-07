@@ -1,6 +1,3 @@
-import { Alert } from 'reactstrap';
-
-
 export enum UNotificationColor {
   primary = 'primary',
   secondary = 'secondary',
@@ -20,12 +17,12 @@ export interface UNotificationProps {
 }
 
 
+// color={ color }
+//     toggle={ onToggle }
+//     transition={ {
+//       timeout: 500
+//     } }
 export function UNotification({ color = UNotificationColor.primary, text, onToggle }: UNotificationProps) {
-  return <Alert
-    color={ color }
-    toggle={ onToggle }
-    transition={ {
-      timeout: 500
-    } }
-  >{ text }</Alert>;
+  return <div onClick={ onToggle }
+  >{ text } { color }</div>;
 }

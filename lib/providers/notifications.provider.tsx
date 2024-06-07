@@ -13,7 +13,7 @@ interface INotificationContext {
 }
 
 
-const DEFAULT_NOTIFICATIONS_CONTEXT: INotificationContext = { addNotification: (color: UNotificationColor, text: string) => undefined };
+const DEFAULT_NOTIFICATIONS_CONTEXT: INotificationContext = { addNotification: () => undefined };
 const NotificationsContext = createContext(DEFAULT_NOTIFICATIONS_CONTEXT);
 
 export const useNotifications = () => {
@@ -28,6 +28,7 @@ export const NotificationsProvider = ({ children }: React.PropsWithChildren) => 
   }
 
   function removeNotification(index: number): void {
+    // @ts-ignore
     setNotifications([ ...notifications.filter((n, i) => i !== index) ]);
   }
 
