@@ -1,19 +1,39 @@
 {
-  "name": "u-notifications",
+  "name": "@u-cat/u-notifications",
+  "author": "Oleksandr Poltoratskyi",
   "private": false,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
   "files": [
     "dist"
   ],
+  "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/myownsumm/u-notifications.git"
+  },
+  "keywords": [
+    "react",
+    "notifications",
+    "messages"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/myownsumm/u-notifications/issues"
+  },
+  "homepage": "https://github.com/myownsumm/u-notifications#readme",
   "scripts": {
     "dev": "vite",
     "build": "tsc --p ./tsconfig-build.json && vite build",
     "lint": "eslint u-notifications --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "prepublishOnly": "npm run build",
+    "publish": "npm run publish",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
