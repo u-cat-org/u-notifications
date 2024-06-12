@@ -13,7 +13,7 @@ export function UNotificationsContainer({ notifications, onToggleHandler }: UNot
   return <div className={ styles.container }>
     { notifications.map((n, i) =>
       <div key={ i }>
-        <UNotification { ...n } onToggle={() => onToggleHandler(i)} />
+        <UNotification { ...n } onToggle={ () => onToggleHandler(i) }/>
       </div>
     ) }
   </div>;
