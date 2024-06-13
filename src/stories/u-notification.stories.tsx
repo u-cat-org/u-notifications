@@ -39,3 +39,17 @@ export const Single: Story = {
   }
 };
 
+export const Multiple: Story = {
+  args: {},
+  render: () => {
+    return <div>
+      <UNotification text={ 'Notification text here' } color={ UNotificationColor.danger }
+                     onToggle={ () => undefined }/>
+      <UNotification text={ 'Notification text here' } color={ UNotificationColor.success }
+                     onToggle={ () => undefined }/>
+      <UNotification text={ 'Notification text here' } color={ UNotificationColor.warning }
+                     onToggle={ () => undefined }/>
+    </div>
+  }
+};
+
