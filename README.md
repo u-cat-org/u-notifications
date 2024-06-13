@@ -29,5 +29,5 @@ Package for a simple notifications management for a React Framework.
       const { addNotification, info } = useNotifications();
    
       addNotification(UNotificationColor.danger, 'Some danger here');
-      info('Information displayed with this notification')
+      info('Information displayed with this notification');
    ```

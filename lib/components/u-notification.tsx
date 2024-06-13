@@ -1,5 +1,4 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Alert from 'react-bootstrap/Alert';
 
 
 export enum UNotificationColor {
@@ -22,8 +21,13 @@ export interface UNotificationProps {
 
 
 export function UNotification({ color = UNotificationColor.primary, text, onToggle }: UNotificationProps) {
-  return <Alert variant={ color } dismissible onClose={ onToggle }>
-    {/*<Alert.Heading>Oh snap! You got an error!</Alert.Heading>*/ }
+  return <div className={ `alert alert-${ color } alert-dismissible fade show` } role="alert">
     { text }
-  </Alert>
+    <button onClick={onToggle} type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+  // return <Alert variant={ color } dismissible onClose={ onToggle }>
+  //   {/*<Alert.Heading>Oh snap! You got an error!</Alert.Heading>*/ }
+  //   { text }
+  // </Alert>
 }

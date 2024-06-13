@@ -2,14 +2,14 @@
   "name": "@u-cat/u-notifications",
   "author": "Oleksandr Poltoratskyi",
   "private": false,
-  "version": "0.0.4",
+  "version": "0.0.5",
   "type": "module",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
   "files": [
     "dist"
   ],
-  "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
+  "description": "Package for a simple notifications management for a React Framework.",
   "directories": {
     "lib": "lib"
   },
@@ -39,7 +39,6 @@
   },
   "peerDependencies": {
     "react": "^18.2.0",
-    "react-bootstrap": "^2.10.2",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
@@ -75,7 +74,6 @@
     "**/*.css"
   ],
   "dependencies": {
-    "bootstrap": "^5.3.3",
-    "react-bootstrap": "^2.10.2"
+    "bootstrap": "^5.3.3"
   }
 }
