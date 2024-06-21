@@ -5,7 +5,6 @@ import { UNotificationsContainer } from '../components/u-notifications-container
 
 
 interface INotificationContext {
-  addNotification: (color: UNotificationColor, text: string) => void;
   primary: (text: string) => void;
   secondary: (text: string) => void;
   warning: (text: string) => void;
@@ -18,7 +17,6 @@ interface INotificationContext {
 
 
 const DEFAULT_NOTIFICATIONS_CONTEXT: INotificationContext = {
-  addNotification: () => undefined,
   primary: () => undefined,
   secondary: () => undefined,
   warning: () => undefined,
@@ -80,7 +78,7 @@ export const UNotificationsProvider = ({ children }: React.PropsWithChildren) =>
   }
 
   return <NotificationsContext.Provider
-    value={ { addNotification, primary, secondary, warning, danger, dark, success, light, info } }>
+    value={ { primary, secondary, warning, danger, dark, success, light, info } }>
     { children }
     <UNotificationsContainer notifications={ notifications }
                              onToggleHandler={ removeNotification }></UNotificationsContainer>
