@@ -1,10 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { UNotification, UNotificationColor } from '../../lib/components/u-notification.tsx';
 import { UNotificationsProvider, useNotifications } from '../../lib/providers/u-notifications.provider.tsx';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { UInput } from './common/Input/Input.tsx';
 import { UButton } from './common/Button/Button.tsx';
 import { USelect } from './common/Select/Select.tsx';
+import { UNotificationsPosition } from '../../lib/notifications.typings.ts';
 
 
 const meta: Meta<typeof UNotification> = {
@@ -58,7 +59,7 @@ export const Multiple: Story = {
   }
 };
 
-function WrapperComponent() {
+function WrapperComponent({ onPositionHange }) {
   const notifications = useNotifications();
 
   const inputRef = useRef(null);
@@ -75,6 +76,10 @@ function WrapperComponent() {
     }
 
     func(inputValue || 'No value');
+  }
+
+  function onPositionSelectChangeHandler(e): void {
+    onPositionHange(e.target.value);
   }
 
   return (
@@ -101,6 +106,15 @@ function WrapperComponent() {
         <option value={ UNotificationColor.light }>Light</option>
         <option value={ UNotificationColor.dark }>Dark</option>
       </USelect>
+
+      <USelect onChange={ onPositionSelectChangeHandler }>
+        <option value={ 'rightBottom' }>Right Bottom</option>
+        <option value={ 'leftBottom' }>Left Bottom</option>
+        <option value={ 'rightTop' }>Right Top</option>
+        <option value={ 'leftTop' }>Left Top</option>
+        <option value={ 'centerTop' }>Center Top</option>
+        <option value={ 'centerBottom' }>Center Bottom</option>
+      </USelect>
     </div>
   );
 }
@@ -113,9 +127,15 @@ export const ControlElements: Story = {
     }
   },
   render: () => {
+    const [ position, setPosition ] = useState<UNotificationsPosition>('rightBottom');
+
+    function positionChangeHandler(p: UNotificationsPosition): void {
+      setPosition(p);
+    }
+
     return <div style={ { width: '300px' } }>
-      <UNotificationsProvider>
-        <WrapperComponent></WrapperComponent>
+      <UNotificationsProvider position={ position }>
+        <WrapperComponent onPositionHange={ positionChangeHandler }></WrapperComponent>
       </UNotificationsProvider>
     </div>
   }

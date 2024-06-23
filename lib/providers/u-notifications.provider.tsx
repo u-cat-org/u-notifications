@@ -1,19 +1,7 @@
-import React, { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import { UNotificationColor } from '../components/u-notification';
-import { INotification } from '../notifications.typings';
+import { INotification, INotificationContext, UNotificationsProviderProps } from '../notifications.typings';
 import { UNotificationsContainer } from '../components/u-notifications-container';
-
-
-interface INotificationContext {
-  primary: (text: string) => void;
-  secondary: (text: string) => void;
-  warning: (text: string) => void;
-  danger: (text: string) => void;
-  dark: (text: string) => void;
-  success: (text: string) => void;
-  light: (text: string) => void;
-  info: (text: string) => void;
-}
 
 
 const DEFAULT_NOTIFICATIONS_CONTEXT: INotificationContext = {
@@ -32,7 +20,7 @@ export const useNotifications = () => {
   return useContext(NotificationsContext);
 };
 
-export const UNotificationsProvider = ({ children }: React.PropsWithChildren) => {
+export const UNotificationsProvider = ({ position, children }: UNotificationsProviderProps) => {
   const [ notifications, setNotifications ] = useState<INotification[]>([]);
 
   function addNotification(color: UNotificationColor, text: string): void {
@@ -79,9 +67,11 @@ export const UNotificationsProvider = ({ children }: React.PropsWithChildren) =>
 
   return <NotificationsContext.Provider
     value={ { primary, secondary, warning, danger, dark, success, light, info } }>
+    position: { position }
     { children }
     <UNotificationsContainer notifications={ notifications }
-                             onToggleHandler={ removeNotification }></UNotificationsContainer>
+                             onToggleHandler={ removeNotification }
+                             position={ position || 'rightBottom' }></UNotificationsContainer>
   </NotificationsContext.Provider>;
 };
 
