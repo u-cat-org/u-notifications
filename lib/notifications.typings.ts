@@ -1,5 +1,4 @@
-import { UNotificationColor } from './components/u-notification';
-import React from 'react';
+import React, { createContext, useContext } from 'react';
 
 
 export interface INotification {
@@ -21,9 +20,53 @@ export interface INotificationContext {
   info: (text: string) => void;
 }
 
-export type UNotificationsPosition = 'rightBottom' | 'leftBottom' | 'rightTop' | 'leftTop' | 'centerTop' | 'centerBottom';
+
+export type UNotificationsPosition =
+  'rightBottom'
+  | 'leftBottom'
+  | 'rightTop'
+  | 'leftTop'
+  | 'centerTop'
+  | 'centerBottom';
 
 
 export interface UNotificationsProviderProps extends React.PropsWithChildren {
   position: UNotificationsPosition;
 }
+
+
+export enum UNotificationColor {
+  primary = 'primary',
+  secondary = 'secondary',
+  success = 'success',
+  danger = 'danger',
+  warning = 'warning',
+  info = 'info',
+  light = 'light',
+  dark = 'dark',
+}
+
+
+export interface UNotificationProps {
+  color?: UNotificationColor;
+  text: string;
+  onToggle: () => void;
+}
+
+
+const DEFAULT_NOTIFICATIONS_CONTEXT: INotificationContext = {
+  primary: () => undefined,
+  secondary: () => undefined,
+  warning: () => undefined,
+  danger: () => undefined,
+  dark: () => undefined,
+  success: () => undefined,
+  light: () => undefined,
+  info: () => undefined
+};
+
+export const NotificationsContext = createContext(DEFAULT_NOTIFICATIONS_CONTEXT);
+
+export const useNotifications = () => {
+  return useContext(NotificationsContext);
+};

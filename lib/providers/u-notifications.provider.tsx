@@ -1,24 +1,8 @@
-import { createContext, useContext, useState } from 'react';
-import { UNotificationColor } from '../components/u-notification';
-import { INotification, INotificationContext, UNotificationsProviderProps } from '../notifications.typings';
+import { useState } from 'react';
+import { INotification, UNotificationColor, UNotificationsProviderProps } from '../notifications.typings';
 import { UNotificationsContainer } from '../components/u-notifications-container';
+import { NotificationsContext } from './../notifications.typings.ts';
 
-
-const DEFAULT_NOTIFICATIONS_CONTEXT: INotificationContext = {
-  primary: () => undefined,
-  secondary: () => undefined,
-  warning: () => undefined,
-  danger: () => undefined,
-  dark: () => undefined,
-  success: () => undefined,
-  light: () => undefined,
-  info: () => undefined
-};
-const NotificationsContext = createContext(DEFAULT_NOTIFICATIONS_CONTEXT);
-
-export const useNotifications = () => {
-  return useContext(NotificationsContext);
-};
 
 export const UNotificationsProvider = ({ position, children }: UNotificationsProviderProps) => {
   const [ notifications, setNotifications ] = useState<INotification[]>([]);
@@ -61,7 +45,7 @@ export const UNotificationsProvider = ({ position, children }: UNotificationsPro
 
 
   function removeNotification(index: number): void {
-    // @ts-ignore
+    // @ts-expect-error. Typescript gives here an error because we are not using "n" argument.
     setNotifications([ ...notifications.filter((n, i) => i !== index) ]);
   }
 
