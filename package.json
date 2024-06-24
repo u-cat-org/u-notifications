@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/myownsumm/u-notifications.git"
+    "url": "git+https://github.com/u-cat-org/u-notifications"
   },
   "keywords": [
     "react",
@@ -24,9 +24,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/myownsumm/u-notifications/issues"
+    "url": "https://github.com/u-cat-org/u-notifications/issues"
   },
-  "homepage": "https://github.com/myownsumm/u-notifications#readme",
+  "homepage": "https://github.com/u-cat-org/u-notifications#readme",
   "scripts": {
     "dev": "vite",
     "build": "tsc --p ./tsconfig-build.json && vite build",
