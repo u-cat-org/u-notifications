@@ -30,7 +30,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc --p ./tsconfig-build.json && vite build",
-    "lint": "eslint u-notifications --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint lib --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "prepublishOnly": "npm run build",
     "publish": "npm run publish",
