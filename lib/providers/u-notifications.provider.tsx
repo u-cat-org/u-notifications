@@ -45,7 +45,7 @@ export const UNotificationsProvider = ({ position, children }: UNotificationsPro
 
 
   function removeNotification(index: number): void {
-    // @ts-expect-error. Typescript gives here an error because we are not using "n" argument.
+    // @ts-ignore
     setNotifications([ ...notifications.filter((n, i) => i !== index) ]);
   }
 
