@@ -51,7 +51,6 @@ export const UNotificationsProvider = ({ position, children }: UNotificationsPro
 
   return <NotificationsContext.Provider
     value={ { primary, secondary, warning, danger, dark, success, light, info } }>
-    position: { position }
     { children }
     <UNotificationsContainer notifications={ notifications }
                              onToggleHandler={ removeNotification }
