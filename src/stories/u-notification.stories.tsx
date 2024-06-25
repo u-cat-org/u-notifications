@@ -1,11 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { UNotification, UNotificationColor } from '../../lib/components/u-notification.tsx';
-import { UNotificationsProvider, useNotifications } from '../../lib/providers/u-notifications.provider.tsx';
+import {
+  UNotification,
+  UNotificationsProvider,
+  useNotifications,
+  UNotificationsPosition,
+  UNotificationColor
+} from '../../lib';
 import { useRef, useState } from 'react';
 import { UInput } from './common/Input/Input.tsx';
 import { UButton } from './common/Button/Button.tsx';
 import { USelect } from './common/Select/Select.tsx';
-import { UNotificationsPosition } from '../../lib/notifications.typings.ts';
 
 
 const meta: Meta<typeof UNotification> = {
@@ -84,17 +88,13 @@ function WrapperComponent({ onPositionHange }) {
 
   return (
     <div style={ {
-      height: '120px',
+      height: '200px',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'start',
       justifyContent: 'space-between'
     } }>
       <UInput ref={ inputRef } type={ 'text' } defaultValue={ 'New notification text' }/>
-
-      <UButton onClick={ onButtonClickHandler }>
-        Add
-      </UButton>
 
       <USelect ref={ selectRef }>
         <option value={ UNotificationColor.primary }>Primary</option>
@@ -115,6 +115,10 @@ function WrapperComponent({ onPositionHange }) {
         <option value={ 'centerTop' }>Center Top</option>
         <option value={ 'centerBottom' }>Center Bottom</option>
       </USelect>
+
+      <UButton onClick={ onButtonClickHandler }>
+        Add
+      </UButton>
     </div>
   );
 }
