@@ -1,52 +1,82 @@
 import { useState } from 'react';
-import { INotification, UNotificationColor, UNotificationsProviderProps } from '../notifications.typings';
+import {
+  AddNotificationOptions,
+  DEFAULT_CLOSE_TIMEOUT,
+  INotification,
+  UNotificationColor,
+  UNotificationsProviderProps
+} from '../notifications.typings';
 import { UNotificationsContainer } from '../components/u-notifications-container';
 import { NotificationsContext } from './../notifications.typings.ts';
+import { v4 as uuidv4 } from 'uuid';
 
 
-export const UNotificationsProvider = ({ position, children }: UNotificationsProviderProps) => {
+export const UNotificationsProvider = ({
+                                         position,
+                                         closeTimeout,
+                                         children
+                                       }: UNotificationsProviderProps) => {
   const [ notifications, setNotifications ] = useState<INotification[]>([]);
 
-  function addNotification(color: UNotificationColor, text: string): void {
-    setNotifications([ ...notifications, { color, text } ]);
+  // TimeRegistry could be potentially used for preventing notifications close
+  // https://github.com/u-cat-org/u-notifications/issues/22
+  const timeRegistry = new Map<string, NodeJS.Timeout>();
+
+  function __addNotification(color: UNotificationColor, text: string, options: AddNotificationOptions): void {
+    const newNotification: INotification = {
+      color,
+      text,
+      __id: uuidv4(),
+      ...options
+    };
+
+    setNotifications([ ...notifications, newNotification ]);
+
+    const timeout = options?.closeTimeout || closeTimeout || DEFAULT_CLOSE_TIMEOUT;
+
+    if (timeout !== 0) {
+      timeRegistry.set(newNotification.__id, setTimeout(() => {
+        removeNotification(newNotification);
+      }, timeout));
+    }
   }
 
-  function primary(text: string): void {
-    addNotification(UNotificationColor.primary, text);
+  function primary(text: string, options: AddNotificationOptions): void {
+    __addNotification(UNotificationColor.primary, text, options);
   }
 
-  function secondary(text: string): void {
-    addNotification(UNotificationColor.secondary, text);
+  function secondary(text: string, options: AddNotificationOptions): void {
+    __addNotification(UNotificationColor.secondary, text, options);
   }
 
-  function danger(text: string): void {
-    addNotification(UNotificationColor.danger, text);
+  function danger(text: string, options: AddNotificationOptions): void {
+    __addNotification(UNotificationColor.danger, text, options);
   }
 
-  function dark(text: string): void {
-    addNotification(UNotificationColor.dark, text);
+  function dark(text: string, options: AddNotificationOptions): void {
+    __addNotification(UNotificationColor.dark, text, options);
   }
 
-  function success(text: string): void {
-    addNotification(UNotificationColor.success, text);
+  function success(text: string, options: AddNotificationOptions): void {
+    __addNotification(UNotificationColor.success, text, options);
   }
 
-  function light(text: string): void {
-    addNotification(UNotificationColor.light, text);
+  function light(text: string, options: AddNotificationOptions): void {
+    __addNotification(UNotificationColor.light, text, options);
   }
 
-  function info(text: string): void {
-    addNotification(UNotificationColor.info, text);
+  function info(text: string, options: AddNotificationOptions): void {
+    __addNotification(UNotificationColor.info, text, options);
   }
 
-  function warning(text: string): void {
-    addNotification(UNotificationColor.warning, text);
+  function warning(text: string, options: AddNotificationOptions): void {
+    __addNotification(UNotificationColor.warning, text, options);
   }
 
-
-  function removeNotification(index: number): void {
-    // @ts-ignore
-    setNotifications([ ...notifications.filter((n, i) => i !== index) ]);
+  function removeNotification(notification: INotification): void {
+    setNotifications(
+      (notifications) => [ ...notifications.filter((n) => n.__id !== notification.__id) ]
+    );
   }
 
   return <NotificationsContext.Provider
