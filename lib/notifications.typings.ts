@@ -4,20 +4,15 @@ import React, { createContext, useContext } from 'react';
 export interface INotification {
   color: UNotificationColor;
   text: string;
-  // TODO. closeable?
-  // TODO. timerToClose?
+  __id: string;
+  closeTimeout?: number;
 }
 
 
-export interface INotificationContext {
-  primary: (text: string) => void;
-  secondary: (text: string) => void;
-  warning: (text: string) => void;
-  danger: (text: string) => void;
-  dark: (text: string) => void;
-  success: (text: string) => void;
-  light: (text: string) => void;
-  info: (text: string) => void;
+export interface UNotificationProps {
+  color?: UNotificationColor;
+  text: string;
+  onToggle: () => void;
 }
 
 
@@ -28,11 +23,6 @@ export type UNotificationsPosition =
   | 'leftTop'
   | 'centerTop'
   | 'centerBottom';
-
-
-export interface UNotificationsProviderProps extends React.PropsWithChildren {
-  position: UNotificationsPosition;
-}
 
 
 export enum UNotificationColor {
@@ -47,10 +37,21 @@ export enum UNotificationColor {
 }
 
 
-export interface UNotificationProps {
-  color?: UNotificationColor;
-  text: string;
-  onToggle: () => void;
+export interface INotificationContext {
+  primary: (text: string, options: AddNotificationOptions) => void;
+  secondary: (text: string, options: AddNotificationOptions) => void;
+  warning: (text: string, options: AddNotificationOptions) => void;
+  danger: (text: string, options: AddNotificationOptions) => void;
+  dark: (text: string, options: AddNotificationOptions) => void;
+  success: (text: string, options: AddNotificationOptions) => void;
+  light: (text: string, options: AddNotificationOptions) => void;
+  info: (text: string, options: AddNotificationOptions) => void;
+}
+
+
+export interface UNotificationsProviderProps extends React.PropsWithChildren {
+  position: UNotificationsPosition;
+  closeTimeout?: number;
 }
 
 
@@ -70,3 +71,10 @@ export const NotificationsContext = createContext(DEFAULT_NOTIFICATIONS_CONTEXT)
 export const useNotifications = () => {
   return useContext(NotificationsContext);
 };
+
+export const DEFAULT_CLOSE_TIMEOUT = 5000;
+
+
+export interface AddNotificationOptions {
+  closeTimeout?: number;
+}

@@ -6,7 +6,7 @@ import {
   UNotificationsPosition,
   UNotificationColor
 } from '../../lib';
-import { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { UInput } from './common/Input/Input.tsx';
 import { UButton } from './common/Button/Button.tsx';
 import { USelect } from './common/Select/Select.tsx';
@@ -132,13 +132,27 @@ export const ControlElements: Story = {
   },
   render: () => {
     const [ position, setPosition ] = useState<UNotificationsPosition>('rightBottom');
+    const [ timeoutValue, setTimeoutValue ] = useState<number>(5000);
 
     function positionChangeHandler(p: UNotificationsPosition): void {
       setPosition(p);
     }
 
-    return <div style={ { width: '300px' } }>
-      <UNotificationsProvider position={ position }>
+    function onTimeoutInputChangeHandler(e: React.ChangeEvent<HTMLInputElement>) {
+      setTimeoutValue(Number(e.target.value));
+    }
+
+    return <div style={ {
+      width: '200px',
+      height: '250px',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'start',
+      justifyContent: 'space-between'
+    } }>
+      <UInput type="number" defaultValue={ timeoutValue } onChange={ onTimeoutInputChangeHandler }/>
+
+      <UNotificationsProvider position={ position } closeTimeout={ timeoutValue }>
         <WrapperComponent onPositionHange={ positionChangeHandler }></WrapperComponent>
       </UNotificationsProvider>
     </div>
