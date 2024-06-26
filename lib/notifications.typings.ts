@@ -50,7 +50,7 @@ export interface INotificationContext {
 
 
 export interface UNotificationsProviderProps extends React.PropsWithChildren {
-  position: UNotificationsPosition;
+  position?: UNotificationsPosition;
   closeTimeout?: number;
 }
 
