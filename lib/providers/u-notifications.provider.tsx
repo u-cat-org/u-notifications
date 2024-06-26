@@ -41,35 +41,35 @@ export const UNotificationsProvider = ({
     }
   }
 
-  function primary(text: string, options: AddNotificationOptions): void {
+  function primary(text: string, options: AddNotificationOptions = {}): void {
     __addNotification(UNotificationColor.primary, text, options);
   }
 
-  function secondary(text: string, options: AddNotificationOptions): void {
+  function secondary(text: string, options: AddNotificationOptions = {}): void {
     __addNotification(UNotificationColor.secondary, text, options);
   }
 
-  function danger(text: string, options: AddNotificationOptions): void {
+  function danger(text: string, options: AddNotificationOptions = {}): void {
     __addNotification(UNotificationColor.danger, text, options);
   }
 
-  function dark(text: string, options: AddNotificationOptions): void {
+  function dark(text: string, options: AddNotificationOptions = {}): void {
     __addNotification(UNotificationColor.dark, text, options);
   }
 
-  function success(text: string, options: AddNotificationOptions): void {
+  function success(text: string, options: AddNotificationOptions = {}): void {
     __addNotification(UNotificationColor.success, text, options);
   }
 
-  function light(text: string, options: AddNotificationOptions): void {
+  function light(text: string, options: AddNotificationOptions = {}): void {
     __addNotification(UNotificationColor.light, text, options);
   }
 
-  function info(text: string, options: AddNotificationOptions): void {
+  function info(text: string, options: AddNotificationOptions = {}): void {
     __addNotification(UNotificationColor.info, text, options);
   }
 
-  function warning(text: string, options: AddNotificationOptions): void {
+  function warning(text: string, options: AddNotificationOptions = {}): void {
     __addNotification(UNotificationColor.warning, text, options);
   }
 

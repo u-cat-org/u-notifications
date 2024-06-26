@@ -38,14 +38,14 @@ export enum UNotificationColor {
 
 
 export interface INotificationContext {
-  primary: (text: string, options: AddNotificationOptions) => void;
-  secondary: (text: string, options: AddNotificationOptions) => void;
-  warning: (text: string, options: AddNotificationOptions) => void;
-  danger: (text: string, options: AddNotificationOptions) => void;
-  dark: (text: string, options: AddNotificationOptions) => void;
-  success: (text: string, options: AddNotificationOptions) => void;
-  light: (text: string, options: AddNotificationOptions) => void;
-  info: (text: string, options: AddNotificationOptions) => void;
+  primary: (text: string, options?: AddNotificationOptions) => void;
+  secondary: (text: string, options?: AddNotificationOptions) => void;
+  warning: (text: string, options?: AddNotificationOptions) => void;
+  danger: (text: string, options?: AddNotificationOptions) => void;
+  dark: (text: string, options?: AddNotificationOptions) => void;
+  success: (text: string, options?: AddNotificationOptions) => void;
+  light: (text: string, options?: AddNotificationOptions) => void;
+  info: (text: string, options?: AddNotificationOptions) => void;
 }
 
 
