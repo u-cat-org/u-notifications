@@ -14,6 +14,7 @@ import { v4 as uuidv4 } from 'uuid';
 export const UNotificationsProvider = ({
                                          position,
                                          closeTimeout,
+                                         containerStyles,
                                          children
                                        }: UNotificationsProviderProps) => {
   const [ notifications, setNotifications ] = useState<INotification[]>([]);
@@ -84,6 +85,7 @@ export const UNotificationsProvider = ({
     { children }
     <UNotificationsContainer notifications={ notifications }
                              onToggleHandler={ removeNotification }
+                             containerStyles={ containerStyles }
                              position={ position || 'rightBottom' }></UNotificationsContainer>
   </NotificationsContext.Provider>;
 };
