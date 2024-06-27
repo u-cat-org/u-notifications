@@ -2,8 +2,6 @@
     display: block;
     position: fixed;
     width: 40rem;
-    padding-right: 1rem;
-    padding-bottom: 1rem;
     z-index: 99999;
 
     &.leftBottom {

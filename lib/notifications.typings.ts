@@ -52,6 +52,7 @@ export interface INotificationContext {
 export interface UNotificationsProviderProps extends React.PropsWithChildren {
   position?: UNotificationsPosition;
   closeTimeout?: number;
+  containerStyles?: React.CSSProperties;
 }
 
 
@@ -77,4 +78,12 @@ export const DEFAULT_CLOSE_TIMEOUT = 5000;
 
 export interface AddNotificationOptions {
   closeTimeout?: number;
+}
+
+
+export interface UNotificationContainerProps {
+  notifications: INotification[];
+  onToggleHandler: (n: INotification) => void;
+  position: UNotificationsPosition;
+  containerStyles?: React.CSSProperties;
 }
