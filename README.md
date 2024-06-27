@@ -11,9 +11,7 @@ Package for a simple notifications management for a React Framework.
    
     export function App() {
       return (
-        /* Default value for position is Bottom Right, 
-          check the typings to see the possible values */
-        <UNotificationsProvider position={'topRight'}>
+        <UNotificationsProvider>
           {/*Your app structure goes here, 
             and it becomes possible 
             to call for `useNotifications()` hook inside */}
@@ -22,8 +20,6 @@ Package for a simple notifications management for a React Framework.
               <Routes/>
             </UModalProvider>
           </AuthProvider>
-   
-   
         </UNotificationsProvider>
       );
     }
@@ -36,3 +32,46 @@ Package for a simple notifications management for a React Framework.
       const { info } = useNotifications();
       info('Information displayed with this notification');
    ```
+
+# Available configuration
+
+## Container position
+
+You can pass `position` param to `UNotificationsProvider` which allows to set its positioning on the screen.
+Available options are `bottomRight | bottomLeft | topRight | topLeft | bottomCenter | topCenter`. Example:
+
+```tsx
+import { UNotificationsProvider } from '@u-cat/u-notifications';
+
+
+export function App() {
+  return (
+    /* Default value for position is Bottom Right, 
+      check the typings to see the possible values */
+    <UNotificationsProvider position={ 'topRight' }>
+      {/* you components structure here */ }
+    </UNotificationsProvider>
+  );
+}
+```
+
+## Container styles
+
+You can pass `containerStyles` param to `UNotificationsProvider` which allows to control styles of the notifications
+container. Example:
+
+```tsx
+import { UNotificationsProvider } from '@u-cat/u-notifications';
+
+
+export function App() {
+  return (
+    /* Default value for position is Bottom Right, 
+      check the typings to see the possible values */
+    <UNotificationsProvider containerStyles={ { fontSize: '12px', textDecoration: 'underline' } }>
+      {/* you components structure here */ }
+    </UNotificationsProvider>
+  );
+}
+```
+
