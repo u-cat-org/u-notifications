@@ -26,11 +26,11 @@ Package for a simple notifications management for a React Framework.
     ```
 2. Call for `useNotifications()` hook to use it inside your Components:
    ```tsx
-      import { useNotifications } from '@u-cat/u-notifications';
+   import { useNotifications } from '@u-cat/u-notifications';
 
 
-      const { info } = useNotifications();
-      info('Information displayed with this notification');
+   const { info } = useNotifications();
+   info('Information displayed with this notification');
    ```
 
 # Available configuration
