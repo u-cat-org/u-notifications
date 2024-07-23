@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, MutableRefObject, useContext } from 'react';
 
 
 export interface INotification {
@@ -82,8 +82,8 @@ export interface AddNotificationOptions {
 
 
 export interface UNotificationContainerProps {
-  notifications: INotification[];
-  onToggleHandler: (n: INotification) => void;
   position: UNotificationsPosition;
   containerStyles?: React.CSSProperties;
+  closeTimeout?: number;
+  addNotificationRef: MutableRefObject<((color: UNotificationColor, text: string, options?: AddNotificationOptions | undefined) => void) | undefined>;
 }
