@@ -1,4 +1,4 @@
-import { useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import {
   AddNotificationOptions,
   UNotificationColor,
@@ -6,6 +6,8 @@ import {
 } from '../notifications.typings';
 import { UNotificationsContainer } from '../components/u-notifications-container';
 import { NotificationsContext } from './../notifications.typings.ts';
+import { notificationEmitter } from './u-notifications.emitter.tsx';
+import { NOTIFICATION_EMITTER_NAME } from '../notifications.constants.ts';
 
 
 export const UNotificationsProvider = ({
@@ -19,6 +21,14 @@ export const UNotificationsProvider = ({
   const notify = (color: UNotificationColor) => (text: string, options: AddNotificationOptions = {}) => {
     addNotificationRef.current?.(color, text, options);
   };
+
+  useEffect(() => {
+    const handler = ({ color, text, options }: { color: UNotificationColor, text: string, options?: AddNotificationOptions }) => {
+      addNotificationRef.current?.(color, text, options);
+    };
+    notificationEmitter.on(NOTIFICATION_EMITTER_NAME, handler);
+    return () => notificationEmitter.off(NOTIFICATION_EMITTER_NAME, handler);
+  }, []);
 
   const providerValue = useMemo(() => ({
     primary: notify(UNotificationColor.primary),
