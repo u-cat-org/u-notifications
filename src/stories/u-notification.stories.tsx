@@ -4,7 +4,9 @@ import {
   UNotificationsProvider,
   useNotifications,
   UNotificationsPosition,
-  UNotificationColor
+  UNotificationColor,
+  showDangerNotification,
+  showSuccessNotification
 } from '../../lib';
 import React, { useRef, useState } from 'react';
 import { UInput } from './common/Input/Input.tsx';
@@ -156,6 +158,37 @@ export const ControlElements: Story = {
         <WrapperComponent onPositionHange={ positionChangeHandler }></WrapperComponent>
       </UNotificationsProvider>
     </div>
+  }
+};
+
+export const DirectFunctions: Story = {
+  args: {},
+  parameters: {
+    controls: {
+      exclude: /.*/g
+    }
+  },
+  render: () => {
+    return (
+      <div style={{
+        width: '200px',
+        height: '150px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'start',
+        justifyContent: 'space-between',
+        gap: '8px'
+      }}>
+        <UNotificationsProvider>
+          <UButton onClick={() => showDangerNotification('Direct Danger Notification!')}>
+            Show Danger Notification
+          </UButton>
+          <UButton onClick={() => showSuccessNotification('Direct Success Notification!')}>
+            Show Success Notification
+          </UButton>
+        </UNotificationsProvider>
+      </div>
+    );
   }
 };
 
